@@ -1,0 +1,243 @@
+@import 'fonts';
+@import 'constants';
+@import 'mixins';
+
+.content {
+  font-family: 'Open Sans';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: normal;
+  width: 100%;
+  overflow-x: hidden;
+
+  .header {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background-color: $menu-background-color;
+    position: relative;
+    z-index: 2;
+
+    .logo {
+      display: inline-block;
+      vertical-align: top;
+      margin: 10px;
+    }
+
+    > i {
+      display: none;
+    }
+
+    > nav {
+      color: $menu-font-color;
+      display: inline-block;
+      > a {
+        color: inherit;
+        vertical-align: top;
+        display: inline-block;
+        padding: 28px 10px;
+        box-sizing: border-box;
+        text-decoration: none;
+
+        &.selected {
+          border-top: 2px solid $menu-selected-color;
+        }
+
+        &:visited {
+          color: inherit;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .section {
+    min-height: 400px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding: 50px 0;
+    color: $section-text-color;
+
+    &.par {
+      transition: all 2s ease;
+      background-color: $menu-selected-color;
+      padding: 100px 0;
+      h1 {
+        font-size: 3em;
+        margin: 30px auto;
+        opacity: 0;
+      }
+
+      p {
+        transition: all 2s ease;
+        opacity: 0;
+      }
+    }
+
+    h1 {
+      font-size: 3em;
+      transition: all 2s ease;
+      margin: 30px auto;
+    }
+    
+
+    * {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    &.visible {
+      &.par {
+        padding: 50px 0;
+        h1 {
+          font-size: 3em;
+          opacity: 1;
+        }
+        
+        p {
+          opacity: 1;
+          margin: 0 auto 30px;
+        }
+      }
+    } 
+
+    &#eventos {
+      position: relative;
+      background-image: url(../img/background1.jpg);
+      background-position: center;
+      background-size: 100% 100%;
+      @include black-filter();
+    }
+
+    &#interes{
+      position: relative;
+      background-image: url(../img/background3.jpg);
+      background-position: center;
+      background-size: 100% 100%;
+      @include black-filter();
+    }
+
+    &#contactenos{
+      position: relative;
+      background-image: url(../img/background5.jpg);
+      background-position: center;
+      background-size: 100% 100%;
+      @include black-filter();
+
+      iframe {
+        max-width: 100vw;
+      }
+
+      ul {
+        li {
+          list-style: none;
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: $min-desktop-size) {
+  .content {
+    .header {
+      &.fix {
+        position: fixed;
+        top: 0;
+        left: 0;
+        .logo {
+          height: 30px;
+        }
+        > nav {
+          > a {
+            padding: 18px 10px;
+          }
+        }
+      } 
+    }
+  }
+}
+
+@media (max-width: $max-mobile-size) {
+  .content {
+    padding: 75px 0;
+    background: $body-background;
+    color: $body-base-color;
+    box-sizing: border-box;
+    width: 100%;
+    transition: all 0.5s ease;
+
+    .section {
+      min-height: 40vh;
+    }
+
+    &.open {
+      margin-left: 70vw;
+      overflow-x: hidden;
+      .header{ 
+        i {
+          margin-left: 73vw;
+        }
+        > nav {
+          overflow: visible;
+          left: 0;
+        }
+      }
+    }
+    .header {
+      position: fixed;
+      background: transparent;
+      top: 0;
+      left: 0;
+      width: auto;
+      transition: all 0.5s ease;
+
+      &.fix {
+        img {
+          display: none;
+        }
+      }
+
+      > i {
+        transition: all 0.5s ease;
+        display: inline-block;
+        font-size: 2.9em;
+        margin: 15px;
+      }
+      
+      > nav {
+        transition: all 0.5s ease;
+        position: fixed;
+        background-color: $menu-background-color;
+        width: 70vw;
+        overflow: hidden;
+        top: 0;
+        left: -70vw;
+        height: 100vh;
+        .logo {
+          display: block;
+          margin: 10px auto;
+          text-align: center;
+        }
+
+        > a {
+          display: block;
+          padding: 28px 10px;
+          text-align: center;
+
+          &.selected {
+            border-top: 2px solid $menu-selected-color;
+          }
+
+          &:visited {
+            color: inherit;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
